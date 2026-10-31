@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AeroSense, a Raspberry Pi Pico W-based telemetry and instrumentation prototype by Sabrina Bryce.">
+    <title>AeroSense Telemetry System | Sabrina Bryce</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site-header">
+    <a href="../index.html#home" class="logo-link"><img src="../images/logo.png" alt="Sabrina Bryce logo" class="logo"></a>
+    <nav class="navigation">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://github.com/Sabrina25a" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+</header>
+<main>
+    <section class="project-hero">
+        <div class="project-hero-content">
+            <p class="eyebrow">PERSONAL ENGINEERING PROJECT</p>
+            <h1>AeroSense<br>Telemetry System</h1>
+            <p class="project-intro">An embedded instrumentation prototype that brings motion sensing and environmental measurements together in a live browser-based telemetry dashboard.</p>
+            <div class="skills-list" style="margin-top: 1.5rem;">
+                <span>Raspberry Pi Pico W</span><span>MicroPython</span><span>JavaScript</span><span>HTML/CSS</span><span>Sensor Integration</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="project-resources">
+            <a class="primary-button" href="../documents/AeroSense.pdf" target="_blank" rel="noopener noreferrer">Read technical report ↗</a>
+            <a class="secondary-button" href="https://github.com/Sabrina25a/Sabrina25a.github.io/tree/main/projects/aerosense" target="_blank" rel="noopener noreferrer">View source files on GitHub ↗</a>
+        </div>
+        <figure class="project-figure">
+            <img src="aerosense/docs/images/dashboard.png" alt="AeroSense telemetry dashboard showing sensor data, orientation, and system status">
+            <figcaption>The AeroSense browser dashboard, designed to present live sensor telemetry and system events.</figcaption>
+        </figure>
+        <figure class="project-figure">
+            <img src="aerosense/docs/images/prototype.jpg" alt="Photograph of the assembled AeroSense hardware prototype">
+            <figcaption>The assembled AeroSense hardware prototype, integrating the Raspberry Pi Pico W with its sensors and supporting components.</figcaption>
+        </figure>
+    </section>
+
+    <section class="project-section">
+        <h2>Project Overview</h2>
+        <p>AeroSense was developed as a hands-on exploration of embedded sensing, telemetry, and interface design. A Raspberry Pi Pico W reads motion and environmental sensors, processes the measurements, and serves data to a browser-based dashboard over a local Wi-Fi network.</p>
+        <p>The dashboard updates at approximately one-second intervals and presents environmental measurements, motion and orientation estimates, warning states, and event information in a unified interface.</p>
+    </section>
+
+    <section class="project-section">
+        <div class="project-content-grid">
+            <article class="project-detail-card">
+                <h3>Hardware</h3>
+                <ul>
+                    <li>Raspberry Pi Pico W microcontroller</li>
+                    <li>MPU6050 inertial measurement unit</li>
+                    <li>Thermistor and photoresistor</li>
+                    <li>Push buttons and status LEDs</li>
+                    <li>Custom sensor wiring and integration</li>
+                </ul>
+            </article>
+            <article class="project-detail-card">
+                <h3>Software and Features</h3>
+                <ul>
+                    <li>MicroPython sensor acquisition and processing</li>
+                    <li>Wi-Fi-connected HTTP telemetry server</li>
+                    <li>Dynamic artificial horizon and orientation display</li>
+                    <li>Environmental readings and warning indicators</li>
+                    <li>Simulated arming control and event markers</li>
+                </ul>
+            </article>
+            <article class="project-detail-card">
+                <h3>Engineering Focus</h3>
+                <p>Integrated hardware and software, calibrated sensor readings, debugged data acquisition, and developed a responsive interface for interpreting telemetry.</p>
+            </article>
+            <article class="project-detail-card">
+                <h3>System Architecture</h3>
+                <p>The Pico W acquires and processes sensor readings, then provides a JSON endpoint. The browser retrieves the data and updates the dashboard without reloading the page.</p>
+            </article>
+        </div>
+        <figure class="project-figure">
+            <img src="aerosense/docs/images/system_architecture.png" alt="AeroSense system architecture diagram">
+            <figcaption>System architecture illustrating the relationship between the embedded hardware, telemetry server, and browser dashboard.</figcaption>
+        </figure>
+        <figure class="project-figure wiring-figure">
+            <img src="aerosense/hardware/wiring_diagram.png" alt="AeroSense sensor and microcontroller wiring diagram">
+            <figcaption>Hardware wiring diagram for the AeroSense prototype.</figcaption>
+        </figure>
+    </section>
+
+    <section class="project-section">
+        <h2>Technical Documentation</h2>
+        <p>The project folder contains the MicroPython firmware, browser dashboard files, hardware diagram, and supporting images. The full technical report documents the design, implementation, and testing.</p>
+        <div class="project-resources">
+            <a class="primary-button" href="../documents/AeroSense.pdf" target="_blank" rel="noopener noreferrer">Open full report ↗</a>
+            <a class="secondary-button" href="https://github.com/Sabrina25a/Sabrina25a.github.io/tree/main/projects/aerosense" target="_blank" rel="noopener noreferrer">Browse project files ↗</a>
+        </div>
+        <p><strong>Scope note:</strong> AeroSense is an educational prototype. Flight arming and event-marking functions are simulated; the system is not intended for operational aircraft use.</p>
+    </section>
+    <div class="project-navigation"><a href="../index.html#projects">← Back to all projects</a></div>
+</main>
+<footer class="site-footer">
+    <p>© 2026 Sabrina Bryce</p>
+    <a href="https://github.com/Sabrina25a" target="_blank" rel="noopener noreferrer">GitHub</a>
+</footer>
+</body>
+</html>

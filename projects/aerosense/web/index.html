@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07090d">
+<title>AeroSense // Telemetry System</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="background-grid"></div>
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-mark">AS</div>
+        <div>
+            <div class="brand-name">AEROSENSE</div>
+            <div class="brand-subtitle">TELEMETRY SYSTEM</div>
+        </div>
+    </div>
+    <div class="system-status">
+        <span class="status-dot"></span>
+        <span>SYSTEM NOMINAL</span>
+    </div>
+</header>
+<main>
+    <!-- Mission information -->
+    <section class="mission-panel">
+        <div>
+            <div class="section-label">SYSTEM</div>
+            <h1>
+                Aerospace Environmental
+                <span>&amp;</span>
+                Attitude Monitoring
+            </h1>
+            <p>
+                Low-cost embedded instrumentation
+                and telemetry prototype.
+            </p>
+        </div>
+        <div class="mission-info">
+            <div class="info-item">
+                <span class="label">PLATFORM</span>
+                <span class="value">PICO W</span>
+            </div>
+            <div class="info-item">
+                <span class="label">MODE</span>
+                <span class="value active">MONITORING</span>
+            </div>
+            <div class="info-item">
+                <span class="label">LINK</span>
+                <span class="value active" id="link-status">ONLINE</span>
+            </div>
+        </div>
+    </section>
+    <!-- Flight systems -->
+    <section class="flight-systems-section">
+        <div class="section-heading">
+            <span>FLIGHT SYSTEMS</span>
+            <span class="section-line"></span>
+        </div>
+        <div class="flight-systems-grid">
+            <article class="flight-system-card">
+                <div class="card-header">
+                    <span class="card-label">FLIGHT CONTROL</span>
+                    <span class="card-index">SYS 01</span>
+                </div>
+                <div class="card-title">SYSTEM STATE</div>
+                <div class="flight-state-row">
+                    <span class="flight-state-indicator" id="flight-state-indicator"></span>
+                    <span class="flight-state-value" id="flight-state-value">
+                        STANDBY
+                    </span>
+                </div>
+                <div class="card-footer">
+                    GREEN BUTTON // ARM / STANDBY
+                </div>
+            </article>
+            <article class="flight-system-card">
+                <div class="card-header">
+                    <span class="card-label">EVENT TRACKING</span>
+                    <span class="card-index">SYS 02</span>
+                </div>
+                <div class="card-title">EVENT MARKERS</div>
+                <div class="measurement">
+                    <span class="measurement-value" id="marker-count">0</span>
+                    <span class="measurement-unit">EVT</span>
+                </div>
+                <div class="card-footer">
+                    BLUE BUTTON // MARK EVENT
+                </div>
+            </article>
+            <article class="flight-system-card">
+                <div class="card-header">
+                    <span class="card-label">SYSTEM MONITOR</span>
+                    <span class="card-index">SYS 03</span>
+                </div>
+                <div class="card-title">FLIGHT STATUS</div>
+                <div class="flight-status-value" id="flight-status-summary">
+                    SYSTEM READY
+                </div>
+                <div class="flight-status-description" id="flight-status-description">
+                    Awaiting control input.
+                </div>
+                <div class="card-footer">
+                    SIMULATED FLIGHT CONTROL
+                </div>
+            </article>
+        </div>
+    </section>
+    <!-- System warning banner -->
+    <section class="warning-banner" id="warning-banner" role="status" aria-live="polite">
+        <div class="warning-indicator" id="warning-indicator"></div>
+
+        <div class="warning-content">
+            <div class="warning-heading" id="warning-heading">
+                ALL SYSTEMS NOMINAL
+            </div>
+
+            <div class="warning-message" id="warning-message">
+                No active warnings. Environmental and attitude readings are within configured limits.
+            </div>
+        </div>
+
+        <div class="warning-code" id="warning-code">
+            STATUS 00
+        </div>
+    </section>
+    <!-- Live telemetry -->
+    <section>
+        <div class="section-heading">
+            <span>LIVE TELEMETRY</span>
+            <span class="section-line"></span>
+        </div>
+        <div class="telemetry-grid">
+            <!-- Temperature -->
+            <article class="telemetry-card">
+                <div class="card-header">
+                    <span class="card-label">ENVIRONMENT</span>
+                    <span class="card-index">01</span>
+                </div>
+                <div class="card-title">TEMPERATURE</div>
+                <div class="measurement">
+                    <span id="temperature-value" class="measurement-value">--.-</span>
+                    <span class="measurement-unit">°C</span>
+                </div>
+                <div class="card-footer">THERMISTOR</div>
+            </article>
+            <!-- Light -->
+            <article class="telemetry-card">
+                <div class="card-header">
+                    <span class="card-label">ENVIRONMENT</span>
+                    <span class="card-index">02</span>
+                </div>
+                <div class="card-title">LIGHT LEVEL</div>
+                <div class="measurement">
+                    <span id="light-value" class="measurement-value">---.-</span>
+                    <span class="measurement-unit">%</span>
+                </div>
+                <div class="card-footer">PHOTORESISTOR</div>
+            </article>
+            <!-- Acceleration -->
+            <article class="telemetry-card large-card">
+                <div class="card-header">
+                    <span class="card-label">MOTION</span>
+                    <span class="card-index">03</span>
+                </div>
+                <div class="card-title">ACCELERATION</div>
+                <div class="axis-grid">
+                    <div class="axis">
+                        <span class="axis-label">X</span>
+                        <span id="accel-x-value" class="axis-value">--.--</span>
+                        <span class="axis-unit">g</span>
+                    </div>
+                    <div class="axis">
+                        <span class="axis-label">Y</span>
+                        <span id="accel-y-value" class="axis-value">--.--</span>
+                        <span class="axis-unit">g</span>
+                    </div>
+                    <div class="axis">
+                        <span class="axis-label">Z</span>
+                        <span id="accel-z-value" class="axis-value">--.--</span>
+                        <span class="axis-unit">g</span>
+                    </div>
+                </div>
+                <div class="card-footer">MPU6050 IMU</div>
+            </article>
+            <!-- Gyroscope -->
+            <article class="telemetry-card large-card">
+                <div class="card-header">
+                    <span class="card-label">MOTION</span>
+                    <span class="card-index">04</span>
+                </div>
+                <div class="card-title">ANGULAR VELOCITY</div>
+                <div class="axis-grid">
+                    <div class="axis">
+                        <span class="axis-label">X</span>
+                        <span id="gyro-x-value" class="axis-value">--.--</span>
+                        <span class="axis-unit">°/s</span>
+                    </div>
+                    <div class="axis">
+                        <span class="axis-label">Y</span>
+                        <span id="gyro-y-value" class="axis-value">--.--</span>
+                        <span class="axis-unit">°/s</span>
+                    </div>
+                    <div class="axis">
+                        <span class="axis-label">Z</span>
+                        <span id="gyro-z-value" class="axis-value">--.--</span>
+                        <span class="axis-unit">°/s</span>
+                    </div>
+                </div>
+                <div class="card-footer">MPU6050 IMU</div>
+            </article>
+        </div>
+    </section>
+    <!-- Attitude display -->
+    <section class="attitude-section">
+        <div class="section-heading">
+            <span>ATTITUDE / ORIENTATION</span>
+            <span class="section-line"></span>
+        </div>
+        <div class="attitude-layout">
+            <div class="attitude-display">
+                <div class="attitude-header">
+                    <span>IMU VISUALIZATION</span>
+                    <span class="imu-online">● ONLINE</span>
+                </div>
+                <div class="horizon">
+                    <div class="horizon-scene" id="horizon-scene">
+                        <div class="horizon-sky"></div>
+                        <div class="horizon-ground"></div>
+                        <div class="horizon-line"></div>
+                        <div class="pitch-ladder">
+                            <div class="pitch-mark pitch-plus-20">
+                                <span></span><span>20</span><span></span>
+                            </div>
+                            <div class="pitch-mark pitch-plus-10">
+                                <span></span><span>10</span><span></span>
+                            </div>
+                            <div class="pitch-mark pitch-minus-10">
+                                <span></span><span>10</span><span></span>
+                            </div>
+                            <div class="pitch-mark pitch-minus-20">
+                                <span></span><span>20</span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="horizon-center">
+                        <span class="aircraft-wing aircraft-wing-left"></span>
+                        <span class="aircraft-center"></span>
+                        <span class="aircraft-wing aircraft-wing-right"></span>
+                    </div>
+                    <div class="roll-indicator" id="roll-indicator">
+                        <span class="roll-tick roll-tick-left"></span>
+                        <span class="roll-tick roll-tick-right"></span>
+                        <span class="roll-tick roll-tick-top"></span>
+                    </div>
+                </div>
+                <div class="attitude-caption">
+                    MPU6050 // ACCELEROMETER
+                </div>
+            </div>
+            <!-- Numerical attitude -->
+            <div class="attitude-values">
+                <div class="attitude-value">
+                    <span class="attitude-label">ROLL</span>
+                    <span id="roll-value" class="attitude-number">+00.0</span>
+                    <span class="attitude-unit">°</span>
+                </div>
+                <div class="attitude-value">
+                    <span class="attitude-label">PITCH</span>
+                    <span id="pitch-value" class="attitude-number">+00.0</span>
+                    <span class="attitude-unit">°</span>
+                </div>
+                <div class="attitude-value">
+                    <span class="attitude-label">YAW RATE</span>
+                    <span id="yaw-rate-value" class="attitude-number">+00.0</span>
+                    <span class="attitude-unit">°/s</span>
+                </div>
+                <div class="attitude-value">
+                    <span class="attitude-label">UPDATE RATE</span>
+                    <span class="attitude-number">1</span>
+                    <span class="attitude-unit">Hz</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bottom status and event log -->
+    <section class="bottom-grid">
+        <div class="status-panel">
+            <div class="section-heading">
+                <span>TELEMETRY STATUS</span>
+                <span class="section-line"></span>
+            </div>
+            <div class="status-row">
+                <span>SENSOR BUS</span>
+                <span class="online" id="sensor-bus-status">ONLINE</span>
+            </div>
+            <div class="status-row">
+                <span>DATA LINK</span>
+                <span class="online" id="data-link-status">ACTIVE</span>
+            </div>
+            <div class="status-row">
+                <span>FLIGHT SYSTEM</span>
+                <span class="online" id="flight-system-status">STANDBY</span>
+            </div>
+            <div class="status-row">
+                <span>EVENT MARKERS</span>
+                <span class="online" id="event-counter-status">0</span>
+            </div>
+            <div class="status-row">
+                <span>SYSTEM ALERTS</span>
+                <span class="online" id="alert-status">NONE</span>
+            </div>
+        </div>
+        <div class="event-panel">
+            <div class="section-heading">
+                <span>MISSION EVENT LOG</span>
+                <span class="section-line"></span>
+            </div>
+            <div class="event-log" id="event-log" aria-live="polite">
+                <div class="event">
+                    <span class="event-time">--:--:--</span>
+                    <span>Waiting for telemetry data...</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">--:--:--</span>
+                    <span>AeroSense system initialized.</span>
+                </div>
+            </div>
+            <div class="event-log-footer">
+                <span>SESSION EVENTS</span>
+                <span id="session-event-count">0</span>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    AEROSENSE // EMBEDDED TELEMETRY PROTOTYPE
+    <span>PICO W</span>
+</footer>
+<script src="/script.js"></script>
+</body>
+</html>

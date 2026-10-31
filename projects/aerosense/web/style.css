@@ -1,0 +1,1686 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+
+:root {
+    --bg: #07090d;
+    --panel: #0d1118;
+    --panel-light: #111721;
+    --border: #252c37;
+    --border-bright: #384352;
+
+    --text: #edf1f5;
+    --muted: #6f7a88;
+    --dim: #444d5a;
+
+    --pink: #e05a9a;
+    --pink-bright: #ff79b4;
+
+    --green: #63df91;
+    --blue: #62b9ff;
+    --red: #ff5d6c;
+
+    --mono: "Space Mono", monospace;
+    --display: "Barlow Condensed", Arial, sans-serif;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    background: var(--bg);
+}
+
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(224, 90, 154, 0.10),
+            transparent 38%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family: var(--display);
+
+    letter-spacing: 0.3px;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================
+   BACKGROUND GRID
+===================================== */
+
+.background-grid {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.45;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+}
+
+
+.background-grid::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 4px,
+            rgba(255,255,255,0.008) 5px
+        );
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.topbar {
+    position: relative;
+
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 42px;
+
+    border-bottom: 1px solid var(--border);
+
+    background: rgba(7,9,13,0.94);
+
+    backdrop-filter: blur(12px);
+}
+
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--pink);
+
+    color: var(--pink-bright);
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        inset 0 0 15px rgba(224,90,154,0.08),
+        0 0 18px rgba(224,90,154,0.05);
+}
+
+
+.brand-name {
+    color: #f5f7f9;
+
+    font-size: 23px;
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    line-height: 1;
+}
+
+
+.brand-subtitle {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+.system-status {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    color: var(--green);
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 7px var(--green),
+        0 0 15px rgba(99,223,145,0.35);
+}
+
+
+/* =====================================
+   MAIN
+===================================== */
+
+main {
+    position: relative;
+
+    max-width: 1420px;
+
+    margin: 0 auto;
+
+    padding: 38px 42px 65px;
+}
+
+
+/* =====================================
+   TOP SYSTEM BAR
+===================================== */
+
+.mission-panel {
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    gap: 50px;
+
+    padding: 28px;
+
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.025),
+            transparent 55%
+        ),
+        rgba(13,17,24,0.86);
+
+    position: relative;
+}
+
+
+.mission-panel::before {
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+    left: 24px;
+
+    width: 100px;
+    height: 2px;
+
+    background: var(--pink);
+}
+
+
+.mission-panel::after {
+    content: "AEROSENSE / AS-001";
+
+    position: absolute;
+
+    right: 20px;
+    bottom: 10px;
+
+    color: var(--dim);
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+.section-label {
+    margin-bottom: 7px;
+
+    color: var(--pink);
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+h1 {
+    max-width: 700px;
+
+    color: #f1f3f6;
+
+    font-size: 40px;
+
+    font-weight: 500;
+
+    line-height: 0.98;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+h1 span {
+    color: var(--pink);
+}
+
+
+.mission-panel p {
+    margin-top: 13px;
+
+    max-width: 580px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+.mission-info {
+    min-width: 285px;
+
+    border-left: 1px solid var(--border);
+
+    padding-left: 25px;
+}
+
+
+.info-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 35px;
+
+    padding: 11px 0;
+
+    border-bottom: 1px solid #1c222b;
+}
+
+
+.label {
+    color: var(--dim);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.value {
+    color: #bfc7d1;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+.value.active {
+    color: var(--green);
+}
+
+
+/* =====================================
+   SECTION TITLES
+===================================== */
+
+.section-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin: 38px 0 13px;
+
+    color: #8c96a4;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.section-line {
+    height: 1px;
+
+    flex: 1;
+
+    background: var(--border);
+}
+
+
+.section-heading::before {
+    content: "◆";
+
+    color: var(--pink);
+
+    font-size: 6px;
+}
+
+
+/* =====================================
+   TELEMETRY GRID
+===================================== */
+
+.telemetry-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+
+.telemetry-card {
+    min-height: 215px;
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.025),
+            transparent 50%
+        ),
+        var(--panel);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.telemetry-card:hover {
+    border-color: var(--border-bright);
+
+    background: var(--panel-light);
+}
+
+
+.telemetry-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 32px;
+    height: 2px;
+
+    background: var(--pink);
+}
+
+
+.telemetry-card::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 20px;
+    height: 20px;
+
+    border-right: 1px solid var(--pink);
+    border-bottom: 1px solid var(--pink);
+
+    opacity: 0.5;
+}
+
+
+.card-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+}
+
+
+.card-label {
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.card-index {
+    color: var(--dim);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+}
+
+
+.card-title {
+    color: #aeb7c3;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.measurement {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    margin-top: 22px;
+}
+
+.measurement-value {
+    color: #f4f6f8;
+    font-family: var(--display);
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.measurement-unit {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 16px;
+}
+
+
+.card-footer {
+    position: absolute;
+
+    left: 20px;
+    bottom: 17px;
+
+    color: var(--dim);
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =====================================
+   MOTION CARDS
+===================================== */
+
+.large-card {
+    grid-column: span 2;
+
+    min-height: 245px;
+}
+
+
+.axis-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 24px;
+}
+
+
+.axis {
+    padding: 13px;
+
+    border: 1px solid #202630;
+
+    background: rgba(255,255,255,0.015);
+
+    position: relative;
+}
+
+
+.axis-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--pink);
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+.axis-value {
+    color: #eef1f5;
+
+    font-family: var(--display);
+
+    font-size: 28px;
+
+    font-weight: 400;
+}
+
+
+.axis-unit {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--dim);
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+}
+
+
+/* =====================================
+   BOTTOM PANELS
+===================================== */
+
+.bottom-grid {
+    display: grid;
+
+    grid-template-columns: 0.8fr 1.2fr;
+
+    gap: 12px;
+
+    margin-top: 12px;
+}
+
+
+.status-panel,
+.event-panel {
+    min-height: 190px;
+
+    padding: 0 20px 20px;
+
+    border: 1px solid var(--border);
+
+    background: var(--panel);
+}
+
+
+.status-panel .section-heading,
+.event-panel .section-heading {
+    margin-top: 20px;
+}
+
+
+.status-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #1c222b;
+
+    color: #697482;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+.online {
+    color: var(--green);
+}
+
+
+.event {
+    display: grid;
+
+    grid-template-columns: 65px 1fr;
+
+    gap: 15px;
+
+    padding: 11px 0;
+
+    border-bottom: 1px solid #1c222b;
+
+    color: #697482;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+}
+
+
+.event-time {
+    color: var(--pink);
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer {
+    position: relative;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 17px 42px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--dim);
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+}
+
+
+footer span {
+    color: var(--pink);
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 1050px) {
+
+    .telemetry-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .large-card {
+        grid-column: span 2;
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+
+    .system-status {
+        display: none;
+    }
+
+
+    main {
+        padding: 25px 18px 45px;
+    }
+
+
+    .mission-panel {
+        grid-template-columns: 1fr;
+    }
+
+
+    .mission-info {
+        border-left: none;
+
+        border-top: 1px solid var(--border);
+
+        padding: 15px 0 0;
+    }
+
+
+    h1 {
+        font-size: 31px;
+    }
+
+
+    .telemetry-grid,
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .large-card {
+        grid-column: span 1;
+    }
+
+
+    footer {
+        padding: 17px 20px;
+    }
+
+}
+
+/* =====================================
+   ATTITUDE DISPLAY
+===================================== */
+
+.attitude-layout {
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr;
+
+    gap: 12px;
+}
+
+
+.attitude-display {
+    min-height: 330px;
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+
+    background: var(--panel);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.attitude-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.imu-online {
+    color: var(--green);
+}
+
+
+/* -------------------------------------
+   Artificial horizon
+------------------------------------- */
+
+.horizon {
+    position: relative;
+
+    width: min(100%, 500px);
+
+    aspect-ratio: 1.8;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border: 1px solid #39424f;
+
+    background: #10151d;
+}
+
+
+.horizon-sky {
+    position: absolute;
+
+    inset: 0;
+
+    height: 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #182b3b,
+            #213d51
+        );
+}
+
+
+.horizon-ground {
+    position: absolute;
+
+    left: -10%;
+
+    bottom: 0;
+
+    width: 120%;
+
+    height: 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #302b2e,
+            #1d1b20
+        );
+}
+
+
+.horizon-line {
+    position: absolute;
+
+    left: 0;
+
+    top: 50%;
+
+    width: 100%;
+
+    height: 1px;
+
+    background: #f0f3f5;
+
+    box-shadow:
+        0 0 5px rgba(255,255,255,0.4);
+}
+
+
+.horizon-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: var(--pink-bright);
+
+    font-family: var(--mono);
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 8px rgba(255,121,180,0.7);
+}
+
+
+.horizon-pitch {
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: rgba(255,255,255,0.65);
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+}
+
+
+.pitch-up {
+    top: 28%;
+}
+
+
+.pitch-zero {
+    top: 48%;
+}
+
+
+.pitch-down {
+    top: 68%;
+}
+
+
+.attitude-caption {
+    margin-top: 12px;
+
+    color: var(--dim);
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* -------------------------------------
+   Numerical values
+------------------------------------- */
+
+.attitude-values {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+
+.attitude-value {
+    min-height: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+
+    background: var(--panel);
+
+    position: relative;
+}
+
+
+.attitude-value::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 2px;
+    height: 100%;
+
+    background: var(--pink);
+
+    opacity: 0.7;
+}
+
+
+.attitude-label {
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.attitude-number {
+    margin-top: 13px;
+
+    color: #f0f3f6;
+
+    font-family: var(--display);
+
+    font-size: 34px;
+
+    font-weight: 400;
+}
+
+
+.attitude-unit {
+    color: var(--dim);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+}
+
+
+/* =====================================
+   ATTITUDE RESPONSIVE
+===================================== */
+
+@media (max-width: 900px) {
+
+    .attitude-layout {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .attitude-values {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =====================================
+   DYNAMIC ARTIFICIAL HORIZON
+===================================== */
+
+.horizon {
+    isolation: isolate;
+    background: #10151d;
+}
+
+/* Moving sky, ground and pitch ladder */
+
+.horizon-scene {
+    position: absolute;
+
+    width: 160%;
+    height: 160%;
+
+    left: -30%;
+    top: -30%;
+
+    transform-origin: center center;
+
+    will-change: transform;
+}
+
+.horizon-sky {
+    position: absolute;
+
+    inset: 0 0 50% 0;
+
+    height: 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #182b3b,
+            #294d64
+        );
+}
+
+.horizon-ground {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #40373b,
+            #211d23
+        );
+}
+
+.horizon-line {
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: #f0f3f5;
+
+    box-shadow:
+        0 0 5px rgba(255,255,255,0.4);
+}
+
+/* Pitch markings */
+
+.pitch-ladder {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.pitch-mark {
+    position: absolute;
+
+    left: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    width: 100px;
+
+    transform: translate(-50%, -50%);
+
+    color: rgba(255,255,255,0.85);
+
+    font-family: var(--mono);
+    font-size: 8px;
+}
+
+.pitch-mark span:first-child,
+.pitch-mark span:last-child {
+    width: 22px;
+    height: 1px;
+
+    background: rgba(255,255,255,0.8);
+}
+
+.pitch-plus-20 {
+    top: 25%;
+}
+
+.pitch-plus-10 {
+    top: 37.5%;
+}
+
+.pitch-minus-10 {
+    top: 62.5%;
+}
+
+.pitch-minus-20 {
+    top: 75%;
+}
+
+/* Fixed aircraft reference */
+
+.horizon-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90px;
+    height: 24px;
+
+    transform: translate(-50%, -50%);
+
+    color: var(--pink-bright);
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.aircraft-wing {
+    display: block;
+
+    height: 4px;
+
+    border: 1px solid var(--pink-bright);
+
+    background: var(--pink-bright);
+
+    box-shadow:
+        0 0 7px rgba(255,121,180,0.6);
+}
+
+.aircraft-wing-left {
+    width: 31px;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        20% 100%
+    );
+}
+
+.aircraft-wing-right {
+    width: 31px;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        80% 100%,
+        0 100%
+    );
+}
+
+.aircraft-center {
+    width: 6px;
+    height: 6px;
+
+    margin: 0 3px;
+
+    border: 1px solid white;
+
+    background: var(--pink-bright);
+
+    border-radius: 50%;
+}
+
+/* Roll indicator */
+
+.roll-indicator {
+    position: absolute;
+
+    inset: 8px 15% auto;
+
+    height: 20px;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+.roll-tick {
+    position: absolute;
+
+    display: block;
+
+    width: 0;
+    height: 0;
+
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+
+    border-top: 7px solid var(--pink-bright);
+
+    filter:
+        drop-shadow(
+            0 0 3px rgba(255,121,180,0.6)
+        );
+}
+
+.roll-tick-left {
+    left: 0;
+    top: 4px;
+
+    transform: rotate(-45deg);
+}
+
+.roll-tick-right {
+    right: 0;
+    top: 4px;
+
+    transform: rotate(45deg);
+}
+
+.roll-tick-top {
+    left: 50%;
+    top: 0;
+
+    transform: translateX(-50%);
+}
+
+/* Responsive horizon */
+
+@media (max-width: 500px) {
+
+    .horizon {
+        aspect-ratio: 1.4;
+    }
+
+    .roll-indicator {
+        left: 12%;
+        right: 12%;
+    }
+
+}
+
+/* =========================
+   FLIGHT SYSTEMS PANEL
+========================= */
+
+.flight-systems-section {
+    margin-bottom: 34px;
+}
+
+.flight-systems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.flight-system-card {
+    position: relative;
+    min-width: 0;
+    min-height: 200px;
+    padding: 20px 20px 45px;
+    background: var(--panel, #0d1118);
+    border: 1px solid var(--border, #252c37);
+    border-radius: 8px;
+}
+
+.flight-state-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.flight-state-indicator {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    border-radius: 50%;
+    background: #84909f;
+    box-shadow: 0 0 7px #84909f;
+}
+
+.flight-state-indicator.armed {
+    background: var(--green, #63df91);
+    box-shadow: 0 0 10px var(--green, #63df91);
+}
+
+.flight-state-value {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #a7b0bd;
+}
+
+.flight-state-value.armed {
+    color: var(--green, #63df91);
+}
+
+.flight-status-value {
+    margin-top: 16px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--pink, #e05a9a);
+}
+
+.flight-status-description {
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    color: #929baa;
+    overflow-wrap: anywhere;
+}
+
+.event-log {
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #394251 transparent;
+}
+
+.event-log .event {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border, #252c37);
+    font-family: "Space Mono", monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #c2cad5;
+    overflow-wrap: anywhere;
+}
+
+.event-time {
+    color: var(--pink, #e05a9a);
+}
+
+.event-log .event.event-alert > span:last-child {
+    color: #ff8585;
+}
+
+.event-log .event.event-success > span:last-child {
+    color: var(--green, #63df91);
+}
+
+.event-log-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border, #252c37);
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #8d98a8;
+}
+
+.event-log-footer span:last-child {
+    color: var(--pink, #e05a9a);
+}
+
+#flight-system-status.armed {
+    color: var(--green, #63df91);
+}
+
+#flight-system-status.standby {
+    color: #a7b0bd;
+}
+
+@media (max-width: 900px) {
+    .flight-systems-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .flight-system-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 560px) {
+    .flight-systems-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .flight-system-card:last-child {
+        grid-column: auto;
+    }
+
+    .flight-system-card {
+        padding: 16px;
+    }
+}
+
+.flight-system-card .card-footer {
+    position: absolute;
+    left: 20px;
+    right: 12px;
+    bottom: 15px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+/* =====================================
+   SYSTEM WARNING BANNER
+===================================== */
+
+.warning-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-top: 16px;
+    padding: 17px 20px;
+
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+
+    background: rgba(99, 223, 145, 0.04);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.warning-indicator {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+
+    border-radius: 50%;
+    background: var(--green);
+
+    box-shadow: 0 0 10px rgba(99, 223, 145, 0.5);
+}
+
+.warning-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.warning-heading {
+    color: var(--green);
+
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.warning-message {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+    font-size: 9px;
+    line-height: 1.7;
+}
+
+.warning-code {
+    color: var(--green);
+
+    font-family: var(--mono);
+    font-size: 8px;
+
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Active warning state */
+
+.warning-banner.warning-active {
+    border-color: rgba(255, 93, 108, 0.45);
+    border-left-color: var(--red);
+
+    background: rgba(255, 93, 108, 0.07);
+}
+
+.warning-banner.warning-active .warning-indicator {
+    background: var(--red);
+
+    box-shadow: 0 0 12px rgba(255, 93, 108, 0.7);
+
+    animation: warning-pulse 1.5s ease-in-out infinite;
+}
+
+.warning-banner.warning-active .warning-heading,
+.warning-banner.warning-active .warning-code {
+    color: var(--red);
+}
+
+@keyframes warning-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@media (max-width: 560px) {
+    .warning-banner {
+        gap: 11px;
+        padding: 14px;
+    }
+
+    .warning-code {
+        font-size: 7px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .warning-banner.warning-active .warning-indicator {
+        animation: none;
+    }
+}
